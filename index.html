@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="containeer">
+        <div class="navbar">
+            <img src="Sound webpage_img/logo.png" class="logo" alt="Logo">
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">SPECIFICATIONS</a></li>
+                <li><a href="#">PRODUCT</a></li>
+                <li><a href="#">CONNECT</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="left-col">
+                <h1>The <br> Real <br> Sound</h1>
+            </div>
+
+            <div class="right-col">
+                <p>Click here to listen to different songs</p>
+                <img src="Sound webpage_img/play.png" id="icon" alt="Play Button">
+                
+                <!-- Music Selection -->
+                <p>Select a Song:</p>
+                <select id="songSelector">
+                    <option value="song1">Song 1 - Host</option>
+                    <option value="song2">Song 2 - Another Track</option>
+                    <option value="song3">Song 3 - New Song</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="mysong">
+        <source id="audioSource" src="Sound webpage_img/Color_Out_-_Host.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        var mysong = document.getElementById("mysong");
+        var icon = document.getElementById("icon");
+        var audioSource = document.getElementById("audioSource");
+        var songSelector = document.getElementById("songSelector");
+
+        // Change the song based on selection
+        songSelector.onchange = function() {
+            var selectedSong = songSelector.value;
+
+            if (selectedSong === "song1") {
+                audioSource.src = "Sound webpage_img/Color_Out_-_Host.mp3";
+            } else if (selectedSong === "song2") {
+                audioSource.src = "Sound webpage_img/No_Rest_Or_Endless_Rest_-_Lisofv (1).mp3";
+
+            } else if (selectedSong === "song3") {
+                audioSource.src = "Sound webpage_img/LEEONA_-_LEEONA_-_Do_I.mp3";
+            }
+
+            // Reload audio element to apply the new source
+            mysong.load();
+            mysong.play();
+            icon.src = "Sound webpage_img/pause.png";
+        };
+
+        // Play and pause the song on icon click
+        icon.onclick = function() {
+            if (mysong.paused) {
+                mysong.play();
+                icon.src = "Sound webpage_img/pause.png";
+            } else {
+                mysong.pause();
+                icon.src = "Sound webpage_img/play.png";
+            }
+        };
+    </script>
+    
+</body>
+</html>
